@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMH4CK3R - Security & Forensics Expert</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background: linear-gradient(135deg, #0a0e27 0%, #0f0f2e 50%, #1a1250 100%);
+            color: #00ff00;
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Animated Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(0, 255, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 0, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(0, 100, 255, 0.1) 0%, transparent 50%);
+            animation: gradientShift 15s ease infinite;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% {
+                opacity: 0.5;
+            }
+            50% {
+                opacity: 0.8;
+            }
+        }
+
+        /* Particles Animation */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #00ff00;
+            border-radius: 50%;
+            animation: float 20s infinite;
+            opacity: 0.5;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100px);
+                opacity: 0;
+            }
+        }
+
+        /* Container */
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+            animation: slideInDown 1s ease-out;
+        }
+
+        @keyframes slideInDown {
+            from {
+                transform: translateY(-100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        h1 {
+            font-size: 3.5em;
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px #00ff00, 0 0 40px #ff00ff;
+            animation: glitch 3s ease-in-out infinite;
+            letter-spacing: 2px;
+        }
+
+        @keyframes glitch {
+            0% {
+                text-shadow: 0 0 20px #00ff00, 0 0 40px #ff00ff;
+            }
+            50% {
+                text-shadow: 0 0 30px #00ffff, 0 0 50px #ffff00;
+            }
+            100% {
+                text-shadow: 0 0 20px #00ff00, 0 0 40px #ff00ff;
+            }
+        }
+
+        .subtitle {
+            font-size: 1.5em;
+            color: #00ffff;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease-out 0.3s both;
+            letter-spacing: 1px;
+        }
+
+        .tagline {
+            font-size: 1.1em;
+            color: #ffff00;
+            font-style: italic;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        /* Typing Effect */
+        .typing-effect {
+            display: inline-block;
+            border-right: 3px solid #00ff00;
+            white-space: nowrap;
+            overflow: hidden;
+            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
+            }
+        }
+
+        @keyframes blink-caret {
+            from, to {
+                border-right-color: #00ff00;
+            }
+            50% {
+                border-right-color: transparent;
+            }
+        }
+
+        /* Section */
+        section {
+            margin-bottom: 60px;
+            padding: 40px;
+            background: rgba(15, 15, 46, 0.6);
+            border: 2px solid #00ff00;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.3), inset 0 0 20px rgba(0, 255, 0, 0.1);
+            animation: fadeInUp 1s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 0, 0.2), transparent);
+            animation: shine 3s infinite;
+            pointer-events: none;
+        }
+
+        @keyframes shine {
+            0% {
+                left: -100%;
+            }
+            100% {
+                left: 100%;
+            }
+        }
+
+        h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #ff00ff;
+            text-shadow: 0 0 10px #ff00ff;
+            border-bottom: 2px solid #00ffff;
+            padding-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .skill-card {
+            padding: 20px;
+            background: rgba(0, 255, 0, 0.1);
+            border: 2px solid #00ffff;
+            border-radius: 8px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            animation: scaleIn 0.5s ease-out;
+        }
+
+        .skill-card:hover {
+            transform: scale(1.1) translateY(-5px);
+            border-color: #ff00ff;
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
+            background: rgba(255, 0, 255, 0.1);
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .skill-name {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #00ff00;
+            margin-bottom: 10px;
+        }
+
+        .skill-level {
+            font-size: 0.9em;
+            color: #ffff00;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: rgba(0, 255, 0, 0.2);
+            border-radius: 5px;
+            margin-top: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00ff00, #00ffff);
+            border-radius: 5px;
+            animation: fillBar 2s ease-out;
+        }
+
+        @keyframes fillBar {
+            from {
+                width: 0;
+            }
+            to {
+                width: var(--fill);
+            }
+        }
+
+        /* Projects */
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-card {
+            padding: 25px;
+            background: linear-gradient(135deg, rgba(0, 100, 255, 0.1) 0%, rgba(255, 0, 255, 0.1) 100%);
+            border: 2px solid #00ffff;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            animation: slideInUp 0.6s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 0, 255, 0.3) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            animation: rotate 6s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.5), 0 0 60px rgba(255, 0, 255, 0.3);
+        }
+
+        .project-card:hover::after {
+            opacity: 1;
+        }
+
+        .project-title {
+            font-size: 1.5em;
+            color: #00ff00;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-desc {
+            color: #00ffff;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+
+        .tag {
+            padding: 5px 10px;
+            background: rgba(0, 255, 0, 0.2);
+            border: 1px solid #00ff00;
+            border-radius: 5px;
+            font-size: 0.8em;
+            color: #00ff00;
+        }
+
+        /* Social Links */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            position: relative;
+            z-index: 1;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .social-btn {
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #00ff00, #00ffff);
+            border: 2px solid #00ff00;
+            border-radius: 8px;
+            color: #000;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .social-btn:hover {
+            transform: scale(1.1) rotate(2deg);
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.7);
+        }
+
+        /* Stats */
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            position: relative;
+            z-index: 1;
+            margin-top: 20px;
+        }
+
+        .stat-box {
+            text-align: center;
+            padding: 20px;
+            background: rgba(0, 255, 0, 0.1);
+            border: 2px solid #ff00ff;
+            border-radius: 8px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 0 10px rgba(255, 0, 255, 0.5);
+            }
+            50% {
+                box-shadow: 0 0 30px rgba(255, 0, 255, 0.8);
+            }
+        }
+
+        .stat-number {
+            font-size: 2em;
+            color: #ffff00;
+            font-weight: bold;
+        }
+
+        .stat-label {
+            color: #00ffff;
+            font-size: 0.9em;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 2px solid #00ff00;
+            color: #00ffff;
+            position: relative;
+            z-index: 1;
+            margin-top: 40px;
+        }
+
+        .footer-text {
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+            
+            .subtitle {
+                font-size: 1.2em;
+            }
+            
+            section {
+                padding: 20px;
+            }
+            
+            .skills-grid, .projects-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Loading Animation */
+        .loader {
+            position: relative;
+            width: 50px;
+            height: 50px;
+            margin: 20px auto;
+        }
+
+        .loader::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 3px solid;
+            border-color: #00ff00 transparent #00ffff transparent;
+            border-radius: 50%;
+            animation: spin 1.5s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Code Block Styling */
+        pre, code {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px 15px;
+            border-radius: 5px;
+            border-left: 3px solid #00ff00;
+            color: #00ff00;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Particles -->
+    <div class="particles" id="particlesContainer"></div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1>🎯 AMH4CK3R 🎯</h1>
+            <div class="subtitle">
+                <span class="typing-effect">Security & Forensics Expert</span>
+            </div>
+            <p class="tagline">Building Tomorrow's Security Solutions Today</p>
+        </header>
+
+        <!-- About Section -->
+        <section id="about">
+            <h2>🔐 About Me</h2>
+            <p style="line-height: 1.8; position: relative; z-index: 1;">
+                Welcome to my digital domain! I'm a passionate cybersecurity enthusiast and forensic analyst 
+                dedicated to building cutting-edge security tools and frameworks. With expertise in digital forensics, 
+                reverse engineering, and security research, I'm committed to advancing the field of cybersecurity 
+                through open-source contributions and innovative solutions.
+            </p>
+            <p style="line-height: 1.8; position: relative; z-index: 1; margin-top: 15px;">
+                Currently learning cosmic networks and exploring the depths of system security. Let's secure 
+                the digital future together! 🚀
+            </p>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills">
+            <h2>💻 Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-name">Python</div>
+                    <div class="skill-level">Advanced</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="--fill: 95%;"></div>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-name">JavaScript</div>
+                    <div class="skill-level">Intermediate</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="--fill: 80%;"></div>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-name">Bash/Shell</div>
+                    <div class="skill-level">Advanced</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="--fill: 90%;"></div>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-name">Perl</div>
+                    <div class="skill-level">Intermediate</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="--fill: 75%;"></div>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-name">Forensics</div>
+                    <div class="skill-level">Advanced</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="--fill: 92%;"></div>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-name">Penetration Testing</div>
+                    <div class="skill-level">Advanced</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="--fill: 88%;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects">
+            <h2>🚀 Featured Projects</h2>
+            <div class="projects-container">
+                <div class="project-card">
+                    <div class="project-title">🔬 T-REX Forensic</div>
+                    <div class="project-desc">Advanced cross-platform forensic analysis tool with sci-fi inspired interface</div>
+                    <div class="project-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Forensics</span>
+                        <span class="tag">GUI</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-title">👹 NightMare-CF</div>
+                    <div class="project-desc">Advanced cybersecurity framework for penetration testing and vulnerability assessment</div>
+                    <div class="project-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Security</span>
+                        <span class="tag">Framework</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-title">🐧 Linux Commands Windows</div>
+                    <div class="project-desc">Bridge the gap between Linux and Windows environments with automatic batch generation</div>
+                    <div class="project-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Automation</span>
+                        <span class="tag">Tool</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-title">🔐 File Erase Tool</div>
+                    <div class="project-desc">Secure data elimination with advanced forensic-grade file erasure techniques</div>
+                    <div class="project-tags">
+                        <span class="tag">Perl</span>
+                        <span class="tag">Security</span>
+                        <span class="tag">Forensics</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-title">🌐 Web App Pentest</div>
+                    <div class="project-desc">CVE-2022-31147 path traversal testing framework and vulnerability assessment guide</div>
+                    <div class="project-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Pentest</span>
+                        <span class="tag">CVE</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-title">💳 CardBank</div>
+                    <div class="project-desc">Financial security and data protection tool with advanced encryption</div>
+                    <div class="project-tags">
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">Security</span>
+                        <span class="tag">Finance</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Statistics Section -->
+        <section id="stats">
+            <h2>📊 Statistics</h2>
+            <div class="stats-container">
+                <div class="stat-box">
+                    <div class="loader"></div>
+                    <div class="stat-number">7</div>
+                    <div class="stat-label">Public Repos</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">+50</div>
+                    <div class="stat-label">Commits</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">∞</div>
+                    <div class="stat-label">Learning</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Passion</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <h2>🌐 Connect With Me</h2>
+            <p style="margin-bottom: 20px; position: relative; z-index: 1;">
+                Let's collaborate and build the future of cybersecurity together!
+            </p>
+            <div class="social-links">
+                <a href="https://github.com/amhar-hckr" target="_blank" class="social-btn">
+                    🔗 GitHub
+                </a>
+                <a href="https://facebook.com/BloodPerlBlackHacker" target="_blank" class="social-btn">
+                    📱 Facebook
+                </a>
+                <a href="https://youtube.com/@MatrixCSinc" target="_blank" class="social-btn">
+                    📺 YouTube
+                </a>
+            </div>
+        </section>
+
+        <!-- Hackers Community Section -->
+        <section id="community">
+            <h2>🛡️ Hackers Community</h2>
+            <p style="text-align: center; margin-bottom: 20px; position: relative; z-index: 1;">
+                Join the underground security community with fellow ethical hackers and cybersecurity enthusiasts!
+            </p>
+            <div style="text-align: center; position: relative; z-index: 1;">
+                <h3 style="color: #ff00ff; margin-bottom: 15px;">💀 BloodPerl Black Hacker Community</h3>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/BloodPerlBlackHacker/" target="_blank" class="social-btn" style="background: linear-gradient(135deg, #FF0000, #00ff00); border-color: #FF0000;">
+                        👹 Join Hackers Community
+                    </a>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 25px;">
+                    <div style="padding: 15px; background: rgba(255, 0, 0, 0.1); border: 2px solid #ff00ff; border-radius: 8px;">
+                        <div style="color: #00ff00; font-weight: bold; margin-bottom: 5px;">🔐 Ethical Hacking</div>
+                        <div style="color: #00ffff; font-size: 0.9em;">Discussions & Learning</div>
+                    </div>
+                    <div style="padding: 15px; background: rgba(255, 0, 0, 0.1); border: 2px solid #ff00ff; border-radius: 8px;">
+                        <div style="color: #00ff00; font-weight: bold; margin-bottom: 5px;">📚 Knowledge Sharing</div>
+                        <div style="color: #00ffff; font-size: 0.9em;">Security & Techniques</div>
+                    </div>
+                    <div style="padding: 15px; background: rgba(255, 0, 0, 0.1); border: 2px solid #ff00ff; border-radius: 8px;">
+                        <div style="color: #00ff00; font-weight: bold; margin-bottom: 5px;">🤝 Collaboration</div>
+                        <div style="color: #00ffff; font-size: 0.9em;">Networking & Projects</div>
+                    </div>
+                    <div style="padding: 15px; background: rgba(255, 0, 0, 0.1); border: 2px solid #ff00ff; border-radius: 8px;">
+                        <div style="color: #00ff00; font-weight: bold; margin-bottom: 5px;">🎓 Growth</div>
+                        <div style="color: #00ffff; font-size: 0.9em;">Learning Together</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-text">
+                <p style="font-size: 1.2em; margin-bottom: 15px;">
+                    "Knowledge is Free. We are Anonymous. We are Legion."
+                </p>
+                <p>
+                    Made with ❤️ by AMH4CK3R | Cybersecurity & Forensics Division
+                </p>
+                <p style="margin-top: 15px; font-size: 0.9em; color: #ffff00;">
+                    Last Updated: February 2026 | © AMH4CK3R - All Rights Reserved
+                </p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Particle Generator Script -->
+    <script>
+        const particlesContainer = document.getElementById('particlesContainer');
+        
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            
+            const x = Math.random() * window.innerWidth;
+            const y = window.innerHeight;
+            const duration = 15 + Math.random() * 15;
+            const delay = Math.random() * 2;
+            
+            particle.style.left = x + 'px';
+            particle.style.top = y + 'px';
+            particle.style.animationDuration = duration + 's';
+            particle.style.animationDelay = delay + 's';
+            
+            particlesContainer.appendChild(particle);
+            
+            setTimeout(() => {
+                particle.remove();
+            }, (duration + delay) * 1000);
+        }
+
+        // Create particles continuously
+        setInterval(createParticle, 300);
+
+        // Initial particles
+        for (let i = 0; i < 10; i++) {
+            createParticle();
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Skills animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.animation = 'fadeInUp 0.6s ease-out';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.skill-card, .project-card').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
